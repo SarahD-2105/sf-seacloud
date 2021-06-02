@@ -68,6 +68,24 @@ class PageController extends AbstractController
     {
         return $this->render('Page/sign-in.html.twig');
     }
-}
 
+
+    /**
+     *
+     */
+    public function loginAction(): Response
+    {
+        $form = $this->createFormBuilder()
+            ->add('email', Type\EmailType::class)
+            ->add('name', Type\TestType::class)
+            ->add('lastname', Type\TestType::class)
+            ->add('password', Type\PasswordType::class)
+            ->add('login', Type\SubmitType::class)
+            ->getForm();
+
+        return $this->render('Security/login.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+}
 
